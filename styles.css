@@ -1,11 +1,11 @@
 :root {
-  --col-bg-light: hsl(0, 0%, 90%);
-  --col-bg: hsl(0, 0%, 80%);
-  --col-bg-dark: hsl(0, 0%, 60%);
-  --col-border-light: hsl(0, 0%, 70%);
-  --col-border: hsl(0, 0%, 60%);
-  --col-border-dark: hsl(0, 0%, 55%);
-  --shadow-normal: 4px 4px 6px hsl(0, 0%, 80%), 2px 2px 3px hsl(0, 0%, 40%), 1px 1px 1px hsl(0, 0%, 20%);
+  --col-bg-1: hsl(0, 0%, 18%);
+  --col-bg-2: hsl(0, 0%, 40%);
+  --col-bg-3: hsl(0, 0%, 50%);
+  --col-border-1: hsl(0, 0%, 65%);
+  --col-border-2: hsl(0, 0%, 40%);
+  --col-border-3: hsl(0, 0%, 55%);
+  --shadow-normal: 4px 4px 8px hsl(0, 0%, 26%), 3px 3px 6px hsl(0, 0%, 51%), 2px 2px 2px hsl(0, 0%, 58%);
 }
 
 /* GLOBAL STYLING */
@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: var(--col-bg-light);
+  background-color: var(--col-bg-1);
 }
 
 main {
@@ -33,12 +33,12 @@ main {
 /* CARDS STYLING */
 
 .card {
-  /* background-color: var(--col-bg); */
-  background-image: linear-gradient(var(--col-bg-light), var(--col-bg) 2% 99%, var(--col-bg-dark));
-  width: 40vw;
-  height: 40vh;
+  background-color: var(--col-bg-3);
+  /* background-image: linear-gradient(var(--col-bg-1), var(--col-bg-2) 1% 99%, var(--col-bg-3)); */
+  width: min(60vw, 60vh);
+  height: min(60vw, 60vh);
   border-radius: 0.8rem;  
   border: 1px solid;
-  border-color: var(--col-border-light) var(--col-border) var(--col-border-dark) var(--col-border);
+  border-color: var(--col-border-1) var(--col-border-2) var(--col-border-3) var(--col-border-2);
   box-shadow: var(--shadow-normal);
 }
