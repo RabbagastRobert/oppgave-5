@@ -1,14 +1,22 @@
-:root {
-  --col-bg-1: hsl(0, 0%, 18%);
-  --col-bg-2: hsl(0, 0%, 40%);
-  --col-bg-3: hsl(0, 0%, 50%);
-  --col-border-1: hsl(0, 0%, 65%);
-  --col-border-2: hsl(0, 0%, 40%);
-  --col-border-3: hsl(0, 0%, 55%);
-  --shadow-normal: 4px 4px 8px hsl(0, 0%, 26%), 3px 3px 6px hsl(0, 0%, 51%), 2px 2px 2px hsl(0, 0%, 58%);
-}
+/* IMPORTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Felipa&family=New+Rocker&display=swap');
+
 
 /* GLOBAL STYLING */
+
+:root {
+  --col-bg-1: hsl(200, 20%, 18%);
+  --col-bg-2: hsl(200, 20%, 40%);
+  --col-bg-3: hsl(161, 20%, 50%);
+  --col-bg-4: hsl(260, 20%, 50%);
+  --col-border-1: hsl(200, 20%, 65%);
+  --col-border-2: hsl(200, 20%, 40%);
+  --col-border-3: hsl(200, 20%, 55%);
+  --col-border-4: hsl(284, 35%, 34%);
+  --col-text: hsl(275, 41%, 8%);
+  --shadow-normal: 4px 4px 8px hsl(0, 0%, 26%), 3px 3px 6px hsl(0, 0%, 51%), 2px 2px 2px hsl(0, 0%, 58%);
+}
 
 * {
   margin: 0;
@@ -16,29 +24,98 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: var(--col-bg-1);
+  color: var(--col-text);
+  font-family: "New Rocker", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  align-content: center;
+}
+
+header {
+  background-color: var(--col-bg-4);
+  border-bottom: 1px solid var(--col-border-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6rem;
+  box-shadow: var(--shadow-normal);
 }
 
 main {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 0;
-  /* grid-template: 1fr 1fr / 1fr 1fr; */
-  gap: 4rem;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+footer {
+  height: 5vh;
 }
 
 /* CARDS STYLING */
 
+#cardsContainer {
+  display: grid;
+  grid: auto / 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem;
+}
+
 .card {
   background-color: var(--col-bg-3);
-  /* background-image: linear-gradient(var(--col-bg-1), var(--col-bg-2) 1% 99%, var(--col-bg-3)); */
-  width: min(60vw, 60vh);
-  height: min(60vw, 60vh);
   border-radius: 0.8rem;  
   border: 1px solid;
   border-color: var(--col-border-1) var(--col-border-2) var(--col-border-3) var(--col-border-2);
   box-shadow: var(--shadow-normal);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: 3rem;
+  padding: 3rem;
+  animation: slideFromLeft 600ms ease;
+}
+
+.card:nth-child(even) {
+  animation: slideFromRight 600ms ease;
+}
+
+.card .quote {
+  font-size: large;
+  text-align: center;
+}
+
+.card .author {
+  text-align: right;
+  font-style: italic;
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #cardsContainer {
+    grid: auto / 1fr;
+  }
 }
