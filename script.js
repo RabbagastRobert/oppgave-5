@@ -9,6 +9,10 @@ let showMoreCardsCooldown = false;
 
 // FUNCTIONS
 
+/**
+ * Loads data into quotesData
+ * @returns {Promise} Promise that is resolved when data has been loaded. Or rejected if it fails to load for some reason
+ */
 async function loadQuotesData() {
     const promise = new Promise((resolve, reject) => {
         // Check if data has already been loaded
@@ -43,6 +47,11 @@ async function loadQuotesData() {
     return promise;
 }
 
+/**
+ * Create and show card of the provided index
+ * @param {number} index 
+ * @returns {void}
+ */
 function showQuoteCard(index) {
     if (!quotesData[index]) {
         // No such card
@@ -50,7 +59,7 @@ function showQuoteCard(index) {
         return;
     }
 
-    const { text, author, source } = quotesData[index];
+    const { text, author } = quotesData[index];
 
     const card = document.createElement('section');
     card.classList.add('card');
@@ -69,15 +78,13 @@ function showQuoteCard(index) {
         card.appendChild(authorDiv);
     }
 
-    if (source) {
-        const sourceLink = document.createElement('a');
-        sourceLink.href = source;
-        sourceLink.innerText = 'Source';
-    }
-
     cardsContainer.appendChild(card);
 }
 
+/**
+ * Create and display the specified amount of cards
+ * @param {number} count 
+ */
 function showMoreCards(count) {
     for (let i = 0; i < count; i++) {
         // Find random card index
@@ -89,19 +96,31 @@ function showMoreCards(count) {
     }
 }
 
+// This function is called when the user first enters the page
 loadQuotesData().then(() => {
+    // Clear the cardscontainer (There is a loading icon in case things move slowly on the internetz)
     cardsContainer.innerHTML = '';
     showMoreCards(1);
 })
 
+// Every 300ms check if the user has scrolled far enough down the page to load the next card.
+// I could have used a 'scrolled' event listener, but for some reason it didn't alway fire when I reached the bottom
+// of the page
 setInterval(() => {
+    // Quick exit if the data hasn't been loaded yet
     if (!quotesData) return;
+
+    // Return if on cooldown. (to not rapidly load many more cards than we want)
     if (showMoreCardsCooldown) return;
 
+    // Get scroll variables from document
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    // Check if we're near the bottom of the page
     if (scrollTop + clientHeight >= scrollHeight - 10) {
         showMoreCards(1);
 
+        // Start the cooldown, then reset the cooldown after 300ms
         showMoreCardsCooldown = true;
         setTimeout(() => showMoreCardsCooldown = false, 300);
     }

@@ -11,14 +11,6 @@
   --col-bg-3: hsl(51, 100%, 78%);
   --col-border: hsl(0, 60%, 40%);
   --col-border-higlight: hsl(20, 60%, 72%);
-  /*
-  --col-bg-2: hsl(200, 20%, 40%);
-  --col-bg-3: hsl(161, 20%, 50%);
-  --col-bg-4: hsl(260, 20%, 50%);
-  --col-border-1: hsl(200, 20%, 65%);
-  --col-border-2: hsl(200, 20%, 40%);
-  --col-border-3: hsl(200, 20%, 55%);
-  --col-border-4: hsl(284, 35%, 34%); */
   --col-text: hsl(230, 21%, 5%);
   --shadow-normal: 4px 4px 8px 2px hsla(0, 0%, 0%, 30%);
 }
