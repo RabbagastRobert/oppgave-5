@@ -6,16 +6,21 @@
 /* GLOBAL STYLING */
 
 :root {
-  --col-bg-1: hsl(200, 20%, 18%);
+  --col-bg-1: hsl(69, 18%, 86%);
+  --col-bg-2: hsl(24, 41%, 69%);
+  --col-bg-3: hsl(51, 100%, 78%);
+  --col-border: hsl(0, 60%, 40%);
+  --col-border-higlight: hsl(20, 60%, 72%);
+  /*
   --col-bg-2: hsl(200, 20%, 40%);
   --col-bg-3: hsl(161, 20%, 50%);
   --col-bg-4: hsl(260, 20%, 50%);
   --col-border-1: hsl(200, 20%, 65%);
   --col-border-2: hsl(200, 20%, 40%);
   --col-border-3: hsl(200, 20%, 55%);
-  --col-border-4: hsl(284, 35%, 34%);
-  --col-text: hsl(275, 41%, 8%);
-  --shadow-normal: 4px 4px 8px hsl(0, 0%, 26%), 3px 3px 6px hsl(0, 0%, 51%), 2px 2px 2px hsl(0, 0%, 58%);
+  --col-border-4: hsl(284, 35%, 34%); */
+  --col-text: hsl(230, 21%, 5%);
+  --shadow-normal: 4px 4px 8px 2px hsla(0, 0%, 0%, 30%);
 }
 
 * {
@@ -35,12 +40,12 @@ body {
 }
 
 header {
-  background-color: var(--col-bg-4);
-  border-bottom: 1px solid var(--col-border-4);
+  background-color: var(--col-bg-2);
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 6rem;
+  border-bottom: 1px solid var(--col-border);
+  text-align: center;
+  padding: 2rem;
   box-shadow: var(--shadow-normal);
 }
 
@@ -56,66 +61,69 @@ footer {
 /* CARDS STYLING */
 
 #cardsContainer {
-  display: grid;
-  grid: auto / 1fr 1fr;
-  gap: 2rem;
-  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 50vh;
+  margin: 30vh 20vw 50vh 20vw;
 }
 
 .card {
+  min-height: 40vh;
   background-color: var(--col-bg-3);
   border-radius: 0.8rem;  
   border: 1px solid;
-  border-color: var(--col-border-1) var(--col-border-2) var(--col-border-3) var(--col-border-2);
+  border-color: var(--col-border-higlight) var(--col-border) var(--col-border) var(--col-border);
   box-shadow: var(--shadow-normal);
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-evenly;
   gap: 3rem;
   padding: 3rem;
-  animation: slideFromLeft 600ms ease;
-}
-
-.card:nth-child(even) {
-  animation: slideFromRight 600ms ease;
+  transform: perspective(1000px);
+  animation: showCardAnimation 3s ease-in;
 }
 
 .card .quote {
-  font-size: large;
+  font-size: x-large;
   text-align: center;
 }
 
+.card .quote::first-letter {
+  font-size: 150%;
+  font-weight: bolder;
+  border: 4px solid var(--col-border);
+  border-radius: 40% 0 0 0;
+  background-color: var(--col-text);
+  color: var(--col-bg-1);
+  padding: 0.1rem 0.3rem;
+  margin: 0.15rem
+}
+
 .card .author {
+  font-size: larger;
   text-align: right;
   font-style: italic;
+
 }
 
-@keyframes slideFromLeft {
-  from {
-    transform: translateX(-1000px);
-    opacity: 0;
+@keyframes showCardAnimation {
+  0% {
+    transform: rotateX(30deg);
+    /* opacity: 0; */
+    opacity: 0.4;
   }
 
-  to {
-    transform: translateX(0px);
+  20% {
+  }
+
+  100% {
+    transform: rotateX(0deg);
     opacity: 1;
   }
 }
 
-@keyframes slideFromRight {
-  from {
-    transform: translateX(1000px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 420px) {
   #cardsContainer {
-    grid: auto / 1fr;
+    margin: 30vh 2rem 50vh 2rem;
   }
 }

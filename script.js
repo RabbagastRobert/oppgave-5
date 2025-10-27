@@ -91,6 +91,7 @@ function showMoreCards(count) {
 
 loadQuotesData().then(() => {
     cardsContainer.innerHTML = '';
+    showMoreCards(1);
 })
 
 setInterval(() => {
@@ -98,10 +99,11 @@ setInterval(() => {
     if (showMoreCardsCooldown) return;
 
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 100) {
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
         showMoreCards(1);
 
         showMoreCardsCooldown = true;
         setTimeout(() => showMoreCardsCooldown = false, 300);
     }
 }, 300);
+
